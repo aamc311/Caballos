@@ -1,91 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Caballos</title>
+    <title>Producto</title>
 </head>
 <body>
-    <center>
-        <h1>Regrista a tu Caballo</h1>
-    </center>
-    <form action="#">
-        <table>
-            <tr align="center">
-                <td><label for="">COLOR DEL LABORATORIO:</label> <br>
-                    <input type="color">
-                </td>
-                <td>
-                    <label for="">TIPO DE LABORATORIO:</label><br>
-                <label for="">SOLO DOCENCIA</label><input type="checkbox"><label for="">DOCENCIA E INVESTIGACION</label>
-                </td>
-            </tr>
-            <tr>
-                <td><br>
-                    <label for="">RESPONSABLE DOCENTE:</label> <br>
-                    <select name="" id="">
-                        <option value="">--Seleccione al docente responsable--</option>
-                        <option value="">MARIA MONTES</option>
-                        <option value="">JUAN LUNA</option>
-                        <option value="">LUCA MARTINEZ</option>
-                    </select>
-                </td>
-                <td>
-                    <label for="">RESPONSABLE ACADÉMICO:</label> <br>
-                    <select name="" id="">
-                        <option value="">--Seleccione al responsable academico--</option>
-                        <option value="">MARIA MONTES</option>
-                        <option value="">JUAN LUNA</option>
-                        <option value="">LUCA MARTINEZ</option>
-                    </select>
-                </td>
-            </tr>
-            <br><br><br>
-            <tr>
-                <td>
-                    <label for="">NOMBRE:</label><br>
-                    <input type="text" placeholder="Ingrese su nombre">
-                </td>
-                <td>
-                    <label for="">UBICACION:</label> <br>
-                    <input type="text" placeholder="Ingrese su ubicacion">
-                </td>
-            </tr>
-    
-        </table>
-        <br><br><br>
-        <label for="">DESCRIPCION:</label><br>
-        <textarea name="" id=""  placeholder="Ingrese la descripcion"></textarea>
-        <br><br><br>
-        <table>
-            <tr>
-                <td>
-                    <label for="">FOTO LABORATORIOM 1 :</label><br>
-                    <input type="image">
-                </td>
-                <td>
-                    <label for="">FOTO LABORATORIOM 2 :</label><br>
-                    <input type="image">
-                </td>
-            </tr>
-        </table>
-        
+    <h1>Gestion de productos</h1>
+    <hr>
+    <form id="form-product">
+        <input type="text" id="nombre"placeholder="Ingrese el nombre del producto">
+        <input type="text" id="precio"placeholder="Ingrese el precio del producto">
+        <input type="text" id="codigo"placeholder="Ingrese el codigo del producto">
+        <button type="submit">Agregar producto</button>
     </form>
-
-
-    <style>
-        table{
-            width: 100%;
-            height: 100%;
-        }
-        select{
-            width: 600px;
-        }
-        img{
-            width: 100%;
-            height: 100%;
-        }
-        
-    </style>
 </body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import{getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc}
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsDPWeaabJmhMad5Vr99U7VLrPqcgkz8U",
+      authDomain: "caballos-dbd1d.firebaseapp.com",
+      projectId: "caballos-dbd1d",
+      storageBucket: "caballos-dbd1d.appspot.com",
+      messagingSenderId: "200325353574",
+      appId: "1:200325353574:web:3af36d6db6f00d396c5da7"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    //Variable constante
+    const caform = document.getElementById("form-caballos");
+    productform.addEventListener("submit",async(e)=>{
+        e.preventDefault();
+        await addDoc(collection(db,"caballos"),{
+            nombre: caballosform.nombre.value,
+            precio: caballosform.precio.value,
+            codigo: caballosform.codigo.value
+        });
+
+        //Limpiar campos
+
+        productform.reset();
+    });
+  </script>
 </html>
