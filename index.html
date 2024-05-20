@@ -140,17 +140,17 @@
     caform.addEventListener("submit",async(e)=>{
         e.preventDefault();
         await addDoc(collection(db,"caballos"),{
-            nombre: caballosform.nombre.value,
-            edad: caballosform.edad.value,
-            tamaño : caballosform.tamaño.value,
-            color : caballosform.color.value,
-            peso: caballosform.peso.value,
-            raza: caballosform.raza.value,
-            alimentacion : caballosform.alimentacion.value,
-            rendimiento : caballosform.rendimiento.value,
-            resistencia: caballosform.resistencia.value,
-            nombredelamadre: caballosform.nombredelamadre.value,
-            nombredelpadre : caballosform.nombredelpadre.value
+            nombre: caform.nombre.value,
+            edad: caform.edad.value,
+            tamaño : caform.tamaño.value,
+            color : caform.color.value,
+            peso: caform.peso.value,
+            raza: caform.raza.value,
+            alimentacion : caform.alimentacion.value,
+            rendimiento : caform.rendimiento.value,
+            resistencia: caform.resistencia.value,
+            nombredelamadre: caform.nombredelamadre.value,
+            nombredelpadre : caform.nombredelpadre.value
 
         });
 
