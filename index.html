@@ -137,7 +137,7 @@
 
     //Variable constante
     const caform = document.getElementById("form-caballos");
-    caballosform.addEventListener("submit",async(e)=>{
+    caform.addEventListener("submit",async(e)=>{
         e.preventDefault();
         await addDoc(collection(db,"caballos"),{
             nombre: caballosform.nombre.value,
