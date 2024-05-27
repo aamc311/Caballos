@@ -207,16 +207,6 @@
     <br>
 </center>
 
-
-<center><h2>REGISTRO DE CABALLOS</h2></center>
-<table class="table table-hover table-bordered border-info" style="width: 90%;">
-    <thead>
-        <tr>
-            
-        </tr>
-    </thead>
-    <tbody id="tabla">
-</table>
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -255,12 +245,18 @@
             resistencia: caform.resistencia.value,
             nombredelamadre: caform.nombredelamadre.value,
             nombredelpadre : caform.nombredelpadre.value,
-
         });
 
         //Limpiar campos
 
         caform.reset();
+
+        if (!caform) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "** No existe ninguna reserva con ese Nombre **"
+                });
+            }
     });
   </script>
 </html>
