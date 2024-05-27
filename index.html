@@ -160,6 +160,8 @@
                 <input type="text" id="co" placeholder="Correo Electronico">
                 <input type="password" id="password" placeholder="Contraseña">
                 <button type="submit">Entrar</button>
+                <br>
+                <button type="button">Google</button>
             </form>
             <form action="" class="formulario_registrar" id="form-reg">
                 <h2>Regístrarse</h2>
@@ -174,7 +176,7 @@
         <script type="module">
             // Import the functions you need from the SDKs you need
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
             import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc }
                 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
             // TODO: Add SDKs for Firebase products that you want to use
@@ -227,7 +229,7 @@
                 signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         alert('Se ha iniciado sesión');
-                        windows.location.hrfe='registro.html'
+                        windows.location.hrfe = 'registro.html'
                     })
                     .catch((error) => {
                         const errorCode = error.code;
@@ -235,6 +237,34 @@
                         alert('Se ha poducido un error');
                     });
                 reg.reset();
+            });
+
+            // Iniciar con Google
+            const go = document.querySelector('#form-log')
+            go.addEventListener('click', (e) => {
+                const provider = new GoogleAuthProvider();
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        alert('Se ha iniciado sesión con Google');
+                        windows.location.hrfe = 'registro.html'
+                        // This gives you a Google Access Token. You can use it to access the Google API.
+                        const credential = GoogleAuthProvider.credentialFromResult(result);
+                        const token = credential.accessToken;
+                        // The signed-in user info.
+                        const user = result.user;
+                        // IdP data available using getAdditionalUserInfo(result)
+                        // ...
+                    }).catch((error) => {
+                        // Handle Errors here.
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        // The email of the user's account used.
+                        const email = error.customData.email;
+                        // The AuthCredential type that was used.
+                        const credential = GoogleAuthProvider.credentialFromError(error);
+                        alert('Se ha poducido un error');
+                        // ...
+                    });
             });
 
         </script>
