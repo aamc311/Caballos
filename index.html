@@ -218,7 +218,7 @@
             // Iniciar Sesión
 
             const log = document.querySelector('#form-log')
-            reg.addEventListener('submit', (e) => {
+            log.addEventListener('submit', (e) => {
                 e.preventDefault();
 
                 const email = document.querySelector('#co').value;
@@ -227,6 +227,7 @@
                 signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         alert('Se ha iniciado sesión');
+                        windows.location.hrfe='registro.html'
                     })
                     .catch((error) => {
                         const errorCode = error.code;
