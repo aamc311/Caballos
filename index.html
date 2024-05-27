@@ -229,7 +229,7 @@
                 signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         alert('Se ha iniciado sesión');
-                        windows.location.href = "registro.html";
+                        window.location.href = "registro.html";
                     })
                     .catch((error) => {
                         const errorCode = error.code;
@@ -247,7 +247,7 @@
                 signInWithPopup(auth, provider)
                     .then((result) => {
                         alert('Se ha iniciado sesión con Google');
-                        window.location.href = "reserva.html";
+                        window.location.href = "registro.html";
                         // This gives you a Google Access Token. You can use it to access the Google API.
                         const credential = GoogleAuthProvider.credentialFromResult(result);
                         const token = credential.accessToken;
