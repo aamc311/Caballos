@@ -241,7 +241,7 @@
 
             // Iniciar con Google
             const go = document.querySelector('#form-log')
-            go.addEventListener('click', (e) => {
+            go.addEventListener('click', e => {
                 const provider = new GoogleAuthProvider();
                 signInWithPopup(auth, provider)
                     .then((result) => {
