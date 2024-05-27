@@ -203,14 +203,14 @@
 
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                alert('Se ha creado la cuenta')
+                alert('Se ha creado la cuenta');
                 const user = userCredential.user;
                 // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                alert('Se ha producido un error')
+                alert('Se ha producido un error');
             });
         })
         
