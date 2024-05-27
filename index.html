@@ -246,6 +246,8 @@
                 const provider = new GoogleAuthProvider();
                 signInWithPopup(auth, provider)
                     .then((result) => {
+                        alert('Se ha iniciado sesión con Google');
+                        window.location.href = "reserva.html";
                         // This gives you a Google Access Token. You can use it to access the Google API.
                         const credential = GoogleAuthProvider.credentialFromResult(result);
                         const token = credential.accessToken;
@@ -262,6 +264,8 @@
                         // The AuthCredential type that was used.
                         const credential = GoogleAuthProvider.credentialFromError(error);
                         // ...
+                        alert('ERROR!');
+
                     });
 
             })
