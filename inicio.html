@@ -96,7 +96,31 @@
     .formulario_registro{
         display: none;
     }
-    
+
+    @media screen and(max-width: 850px){
+        main{
+            margin: 50px;
+        }
+        .caja_trasera{
+            max-width: 350px;
+            height: 300px;
+            flex-direction: column;
+            margin: auto;
+        }
+        .caja_trasera div{
+            margin: 0px;
+            position: absolute;
+        }
+        .contenedor__login-registrar{
+            top: -10px;
+            left: -5px;
+            margin: auto;
+        }
+        .contenedor__login-registrar form{
+            position: relative;
+        }
+        
+    }
 
 </style>
 <body>
