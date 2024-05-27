@@ -227,7 +227,7 @@
                 signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         alert('Se ha iniciado sesión');
-                        windows.location.hrfe= 'registro.html';
+                        windows.location.hrfe= "registro.html";
                     })
                     .catch((error) => {
                         const errorCode = error.code;
