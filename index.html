@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <style>
-
-    .contenedor_todo{
+    .contenedor_todo {
         width: 100%;
         max-width: 800px;
         margin: auto;
         position: relative;
     }
-    .caja_trasera{
+
+    .caja_trasera {
         width: 100%;
         padding: 10px 20px;
         display: flex;
@@ -21,19 +22,23 @@
         backdrop-filter: blur(10px);
         background-color: blueviolet;
     }
-    .caja_trasera div{
+
+    .caja_trasera div {
         margin: 100px 40px;
         transition: all 500ms;
     }
+
     .caja_trasera div p,
-    .caja_trasera div button{
+    .caja_trasera div button {
         margin-top: 30px;
     }
-    .caja_trasera div h3{
+
+    .caja_trasera div h3 {
         font-weight: 400;
         font-size: 26px;
     }
-    .caja_trasera button{
+
+    .caja_trasera button {
         padding: 10px 40px;
         border: 2px solid lightcoral;
         background: transparent;
@@ -44,11 +49,13 @@
         outline: none;
         transform: all 300ms;
     }
-    .caja_trasera button:hover{
+
+    .caja_trasera button:hover {
         background: lightblue;
         color: brown;
     }
-    .contenedor__login-registrar{
+
+    .contenedor__login-registrar {
         display: flex;
         align-items: center;
         width: 100%;
@@ -58,20 +65,22 @@
         left: 10px;
     }
 
-    .contenedor__login-registrar form{
+    .contenedor__login-registrar form {
         width: 100%;
         padding: 80px 20px;
         background: magenta;
         position: absolute;
         border-radius: 20px;
     }
-    .contenedor__login-registrar form h2{
+
+    .contenedor__login-registrar form h2 {
         font-size: 30px;
         text-align: center;
         margin-bottom: 20px;
         color: aqua;
     }
-    .contenedor__login-registrar form input{
+
+    .contenedor__login-registrar form input {
         width: 100%;
         margin-top: 20px;
         padding: 10px;
@@ -80,7 +89,8 @@
         font-size: 16px;
         outline: none;
     }
-    .contenedor__login-registrar form button{
+
+    .contenedor__login-registrar form button {
         padding: 10px 40px;
         margin-top: 40px;
         border: none;
@@ -90,40 +100,46 @@
         cursor: pointer;
         outline: none;
     }
-    .formulario_login{
+
+    .formulario_login {
         opacity: 1;
         display: block;
     }
-    .formulario_registro{
+
+    .formulario_registro {
         display: none;
     }
 
-    @media screen and(max-width: 850px){
-        main{
+    @media screen and(max-width: 850px) {
+        main {
             margin: 50px;
         }
-        .caja_trasera{
+
+        .caja_trasera {
             max-width: 350px;
             height: 300px;
             flex-direction: column;
             margin: auto;
         }
-        .caja_trasera div{
+
+        .caja_trasera div {
             margin: 0px;
             position: absolute;
         }
-        .contenedor__login-registrar{
+
+        .contenedor__login-registrar {
             top: -10px;
             left: -5px;
             margin: auto;
         }
-        .contenedor__login-registrar form{
+
+        .contenedor__login-registrar form {
             position: relative;
         }
-        
-    }
 
+    }
 </style>
+
 <body>
     <main>
         <div class="caja_trasera">
@@ -145,15 +161,60 @@
                 <input type="password" placeholder="Contraseña">
                 <button>Entrar</button>
             </form>
-            <form action="" class="formulario_registrar">
+            <form action="" class="formulario_registrar" id="form-reg">
                 <h2>Regístrarse</h2>
                 <input type="text" placeholder="Nombre">
-                <input type="text" placeholder="Correo Electronico">
-                <input type="text" placeholder="Usuario">
+                <input type="text" id="correo" placeholder="Correo Electronico">
+                <input type="text" id="password" placeholder="Usuario">
                 <input type="password" placeholder="Contraseña">
-                <button>Regístrarse</button>
+                <button type="submit">Regístrarse</button>
             </form>
         </div>
     </main>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc }
+            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsDPWeaabJmhMad5Vr99U7VLrPqcgkz8U",
+            authDomain: "caballos-dbd1d.firebaseapp.com",
+            projectId: "caballos-dbd1d",
+            storageBucket: "caballos-dbd1d.appspot.com",
+            messagingSenderId: "200325353574",
+            appId: "1:200325353574:web:3af36d6db6f00d396c5da7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const reg = document.querySelector('#form-reg')
+        reg.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.querySelector('#email');
+            const password = document.querySelector('#password');
+
+            createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                alert('Se ha creado la cuenta')
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert('Se ha producido un error')
+            });
+        })
+        
+    </script>
 </body>
+
 </html>
