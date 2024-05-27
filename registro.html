@@ -267,7 +267,7 @@
         cerrar.addEventListener('click', e => {
             e.preventDefault();
             auth.signOut().then(() => {
-                alert("Se ha cerrado sesión")
+                alert("Se ha cerrado sesión");
                 window.location.href = "index.html";
             });
         });
