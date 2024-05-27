@@ -155,66 +155,89 @@
             </div>
         </div>
         <div>
-            <form action="" class="formulario_login">
+            <form action="" class="formulario_login" id="form-log">
                 <h2>Iniciar Sesión</h2>
-                <input type="text" placeholder="Correo Electronico">
-                <input type="password" placeholder="Contraseña">
-                <button>Entrar</button>
+                <input type="text" id="co" placeholder="Correo Electronico">
+                <input type="password" id="password" placeholder="Contraseña">
+                <button type="submit">Entrar</button>
             </form>
             <form action="" class="formulario_registrar" id="form-reg">
                 <h2>Regístrarse</h2>
                 <input type="text" placeholder="Nombre">
                 <input type="text" id="correo" placeholder="Correo Electronico">
-                <input type="text"  placeholder="Usuario">
+                <input type="text" placeholder="Usuario">
                 <input type="password" id="password" placeholder="Contraseña">
                 <button type="submit">Regístrarse</button>
             </form>
         </div>
-    </main>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc }
-            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBsDPWeaabJmhMad5Vr99U7VLrPqcgkz8U",
-            authDomain: "caballos-dbd1d.firebaseapp.com",
-            projectId: "caballos-dbd1d",
-            storageBucket: "caballos-dbd1d.appspot.com",
-            messagingSenderId: "200325353574",
-            appId: "1:200325353574:web:3af36d6db6f00d396c5da7"
-        };
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+            import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc }
+                from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyBsDPWeaabJmhMad5Vr99U7VLrPqcgkz8U",
+                authDomain: "caballos-dbd1d.firebaseapp.com",
+                projectId: "caballos-dbd1d",
+                storageBucket: "caballos-dbd1d.appspot.com",
+                messagingSenderId: "200325353574",
+                appId: "1:200325353574:web:3af36d6db6f00d396c5da7"
+            };
 
-        const reg = document.querySelector('#form-reg')
-        reg.addEventListener('submit', (e) => {
-            e.preventDefault();
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
 
-            const email = document.querySelector('#email').value;
-            const password = document.querySelector('#password').value;
+            const reg = document.querySelector('#form-reg')
+            reg.addEventListener('submit', (e) => {
+                e.preventDefault();
 
-            createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                alert('Se ha creado la cuenta');
-                const user = userCredential.user;
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert('Se ha producido un error');
+                const email = document.querySelector('#correo').value;
+                const password = document.querySelector('#password').value;
+
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        alert('Se ha creado la cuenta');
+                        const user = userCredential.user;
+                        // ...
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        alert('Se ha producido un error');
+                    });
+                reg.reset();
             });
-        })
-        
-    </script>
+
+            // Iniciar Sesión
+
+            const log = document.querySelector('#form-log')
+            reg.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const email = document.querySelector('#co').value;
+                const password = document.querySelector('#password').value;
+
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        alert('Se ha iniciado sesión');
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        alert('Se ha poducido un error');
+                    });
+                reg.reset();
+            });
+
+        </script>
+    </main>
 </body>
 
 </html>
