@@ -177,30 +177,25 @@
         </div>
     </form>
 </body>
-
-<!-- Tabla-->
-<div class="container">
-    <center><h2>REGISTRO DE CABALLOS</h2></center>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Edad</th>
-                <th>Tamaño</th>
-                <th>Color</th>
-                <th>Raza</th>
-                <th>Alimentacion</th>
-                <th>Rendimiento</th>
-                <th>Resistencia</th>
-                <th>Nombre de la madre</th>
-                <th>Nombre del padre</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-caballos">
-            <!-- Se insertaran aquí los datos -->
-        </tbody>
-    </table>
-</div>
+<!--tabla-->
+<center><h2>REGISTRO DE CABALLOS</h2></center>
+<table class="table table-hover table-bordered border-info" style="width: 90%;">
+    <thead>
+        <tr>
+            <th scope="col">nombre</th>
+            <th scope="col">edad</th>
+            <th scope="col">tamaño</th>
+            <th scope="col">color</th>
+            <th scope="col">raza</th>
+            <th scope="col">alimentacion</th>
+            <th scope="col">rendimiento</th>
+            <th scope="col">resistencia</th>
+            <th scope="col">nombredelamadre</th>
+            <th scope="col">nombredelpadre</th>
+        </tr>
+    </thead>
+    <tbody id="tabla">
+</table>
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
